@@ -14,6 +14,13 @@ public class Planet : MonoBehaviour
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = defaultColor;
+        string a = "hhh";
+        StringTest(a);
+        Debug.Log(a);
+    }
+
+    void StringTest(string wowza){
+        wowza = "hello baby";
     }
 
     void OnTriggerEnter2D(Collider2D other){
