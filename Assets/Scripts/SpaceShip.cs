@@ -10,6 +10,11 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] float speed = 5;
     [SerializeField] float speedLimit = 10;
 
+    [Header("Tools")]
+    [SerializeField] ProjectileLauncher projectileLauncher;
+
+
+
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
     }
@@ -17,13 +22,21 @@ public class SpaceShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //transform.localEulerAngles = new Vector3(0,0,45);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void AimShip(Transform targetTransform){
+       //transform.rotation =  Quaternion.LookRotation(Vector3.forward, targetTransform.position - transform.position);
+        AimShip(targetTransform.position);
+    }
+    public void AimShip(Vector3 aimPos){
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, aimPos - transform.position);
     }
 
     void FixedUpdate(){
@@ -34,7 +47,15 @@ public class SpaceShip : MonoBehaviour
 
     public void Move(Vector3 movement)
     {
-
         rb.AddForce(movement * speed);
+    }
+
+    public void Recoil(Vector3 amount){
+        rb.AddForce(amount, ForceMode2D.Impulse);
+    }
+
+    public void LaunchWithShip(){
+        Recoil(-transform.up*projectileLauncher.GetRecoilAmount());
+        projectileLauncher.Launch();
     }
 }

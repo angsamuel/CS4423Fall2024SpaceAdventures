@@ -16,7 +16,11 @@ public class PlayerInputHandler : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.Space)){
+            playerShip.LaunchWithShip();
+        }
 
+        playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     void FixedUpdate(){
@@ -37,6 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             movement += new Vector3(1, 0, 0);
         }
+
         playerShip.Move(movement);
     }
 }
