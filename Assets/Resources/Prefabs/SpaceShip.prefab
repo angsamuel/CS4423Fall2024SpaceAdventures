@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  speedLimit: 2.5
+  speedLimit: 2158.6
+  projectileLauncher: {fileID: 5974320937008829287}
 --- !u!58 &8059773785120507218
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,13 +177,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileLauncher
       objectReference: {fileID: 0}
+    - target: {fileID: 338174909267779308, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+      propertyPath: projectileSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.14076199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0783
+      objectReference: {fileID: 0}
     - target: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.00064
       objectReference: {fileID: 0}
     - target: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.872
+      value: 0.41115
       objectReference: {fileID: 0}
     - target: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -216,11 +229,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4171542807975893985, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+--- !u!114 &5974320937008829287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 338174909267779308, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
+  m_PrefabInstance: {fileID: 6221860826178653579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc8149324bedec4f90b8636687057c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6390764454807134086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1074375819452011021, guid: 6c95a6b7d0ed2694bb5588cb1c4217ac, type: 3}
