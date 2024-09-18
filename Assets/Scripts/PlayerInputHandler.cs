@@ -44,4 +44,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerShip.Move(movement);
     }
+
+
+    public SpaceShip GetPlayerShip()    {
+        return playerShip;
+    }
 }

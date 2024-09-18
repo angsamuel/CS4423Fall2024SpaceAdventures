@@ -55,7 +55,13 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void LaunchWithShip(){
-        Recoil(-transform.up*projectileLauncher.GetRecoilAmount());
+        if(projectileLauncher.GetAmmo() > 0){
+            Recoil(-transform.up * projectileLauncher.GetRecoilAmount());
+        }
         projectileLauncher.Launch();
+    }
+
+    public ProjectileLauncher GetProjectileLauncher(){
+        return projectileLauncher;
     }
 }
