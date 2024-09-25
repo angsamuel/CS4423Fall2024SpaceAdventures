@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1995926243697147131}
   m_Layer: 0
   m_Name: SpaceShip
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1547714657
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 14b6f938ea64cc244bc8d98289eb8f2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   speedLimit: 2158.6
+  rotationSpeed: 10
   projectileLauncher: {fileID: 5974320937008829287}
 --- !u!58 &8059773785120507218
 CircleCollider2D:

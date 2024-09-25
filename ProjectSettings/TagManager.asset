@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: Planets
     uniqueID: 1043216693
+    locked: 0
+  - name: PlanetEffects
+    uniqueID: 843077047
     locked: 0
   - name: Debris
     uniqueID: 1590410307

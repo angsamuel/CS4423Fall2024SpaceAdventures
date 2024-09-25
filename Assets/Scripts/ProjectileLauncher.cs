@@ -21,16 +21,22 @@ public class ProjectileLauncher : MonoBehaviour
     [Header("Ammo")]
     [SerializeField] int maxAmmo = 10;
     [SerializeField] int currentAmmo = 10;
+    [SerializeField] float maxReloadTime = 10;
+    float currentReloadTime = 0;
 
     void Awake(){
         currentAmmo = maxAmmo;
     }
 
     //launch a projectile forward
-    public void Launch(){
+    public float Launch(){ //returns a recoil amount
 
         if(currentAmmo < 1){
-            return;
+            return 0;
+        }
+
+        if(currentReloadTime > 0){
+            return 0;
         }
 
         currentAmmo -= 1;
@@ -40,6 +46,41 @@ public class ProjectileLauncher : MonoBehaviour
         audioSource.Play();
 
         Destroy(newProjectile,2);
+        return GetRecoilAmount();
+    }
+
+
+    bool currentlyReloading = false;
+    public void Reload(){
+
+        if(currentlyReloading){
+            return;
+        }
+        if(currentAmmo == maxAmmo){
+            return;
+        }
+        currentlyReloading = true;
+        currentReloadTime = 0;
+        StartCoroutine(ReloadRoutine());
+
+        IEnumerator ReloadRoutine(){
+            Debug.Log("Reload Routine Active!");
+            //yield return new WaitForSeconds(reloadTime);
+
+            while(currentReloadTime < maxReloadTime){
+                yield return null;
+                currentReloadTime += Time.deltaTime;
+            }
+            currentReloadTime = 0;
+            currentAmmo = maxAmmo;
+            currentlyReloading = false;
+            Debug.Log("Reload Routine Done!");
+        }
+
+    }
+
+    public float GetReloadPercentage(){
+        return currentReloadTime / maxReloadTime;
     }
 
     public float GetRecoilAmount(){

@@ -8,4 +8,9 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame(){
         SceneManager.LoadScene("Space");
     }
+
+    public void QuitGame(){
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }

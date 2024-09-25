@@ -72,6 +72,6 @@ public class Asteroid : MonoBehaviour
             Destroy(other.gameObject);
             BreakApart();
         }
-        Debug.Log("Collision!");
+
     }
 }

@@ -6,9 +6,12 @@ public class SpaceShip : MonoBehaviour
 {
 
     Rigidbody2D rb;
-
+    [Header("Movement")]
     [SerializeField] float speed = 5;
     [SerializeField] float speedLimit = 10;
+
+    [Header("Rotation")]
+    [SerializeField] float rotationSpeed = 10;
 
     [Header("Tools")]
     [SerializeField] ProjectileLauncher projectileLauncher;
@@ -36,7 +39,11 @@ public class SpaceShip : MonoBehaviour
         AimShip(targetTransform.position);
     }
     public void AimShip(Vector3 aimPos){
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, aimPos - transform.position);
+        Quaternion goalRotation = Quaternion.LookRotation(Vector3.forward, aimPos - transform.position);
+        Quaternion currentRotation = transform.rotation;
+
+        transform.rotation = Quaternion.Lerp(currentRotation,goalRotation,Time.deltaTime * rotationSpeed);
+        //transform.rotation = Quaternion.Slerp(currentRotation, goalRotation, Time.deltaTime * rotationSpeed);
     }
 
     void FixedUpdate(){
@@ -55,10 +62,8 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void LaunchWithShip(){
-        if(projectileLauncher.GetAmmo() > 0){
-            Recoil(-transform.up * projectileLauncher.GetRecoilAmount());
-        }
-        projectileLauncher.Launch();
+
+        Recoil(-transform.up * projectileLauncher.Launch());
     }
 
     public ProjectileLauncher GetProjectileLauncher(){

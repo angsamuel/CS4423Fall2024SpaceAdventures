@@ -20,6 +20,10 @@ public class PlayerInputHandler : MonoBehaviour
             playerShip.LaunchWithShip();
         }
 
+        if(Input.GetKeyDown(KeyCode.R)){
+            playerShip.GetProjectileLauncher().Reload();
+        }
+
         playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
