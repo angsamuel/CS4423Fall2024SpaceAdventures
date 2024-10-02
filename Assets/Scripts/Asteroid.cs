@@ -71,6 +71,8 @@ public class Asteroid : MonoBehaviour
             Debug.Log("Break apart!");
             Destroy(other.gameObject);
             BreakApart();
+        }else if(other.CompareTag("Ship")){
+            other.GetComponent<SpaceShip>().Damage();
         }
 
     }

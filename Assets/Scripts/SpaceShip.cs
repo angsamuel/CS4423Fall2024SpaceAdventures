@@ -16,6 +16,9 @@ public class SpaceShip : MonoBehaviour
     [Header("Tools")]
     [SerializeField] ProjectileLauncher projectileLauncher;
 
+    //trackers
+    bool dead = false;
+
 
 
     void Awake(){
@@ -68,5 +71,13 @@ public class SpaceShip : MonoBehaviour
 
     public ProjectileLauncher GetProjectileLauncher(){
         return projectileLauncher;
+    }
+
+    public void Damage(){
+        dead = true;
+    }
+
+    public bool IsDead(){
+        return dead;
     }
 }

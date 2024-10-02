@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -16,12 +17,21 @@ public class PlayerInputHandler : MonoBehaviour
     void Update()
     {
 
+        if(playerShip.IsDead()){
+            SceneManager.LoadScene("MainMenu");
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space)){
             playerShip.LaunchWithShip();
         }
 
         if(Input.GetKeyDown(KeyCode.R)){
             playerShip.GetProjectileLauncher().Reload();
+        }
+
+        if(Input.GetKeyDown(KeyCode.J)){
+            SolarSystemManager.singleton.JumpAwayFromSystem();
         }
 
         playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));
