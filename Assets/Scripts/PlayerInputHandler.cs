@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    delegate bool AITick();
     [SerializeField] SpaceShip playerShip;
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
     }
 
     void FixedUpdate(){
@@ -57,6 +59,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         playerShip.Move(movement);
+        //playerShip.MoveToward(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
 

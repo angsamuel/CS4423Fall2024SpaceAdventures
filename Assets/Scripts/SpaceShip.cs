@@ -60,6 +60,12 @@ public class SpaceShip : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
+    public void MoveToward(Vector3 goalPos){
+        goalPos.z = 0;
+        Vector3 direction = goalPos - transform.position;
+        Move(direction.normalized);
+    }
+
     public void Recoil(Vector3 amount){
         rb.AddForce(amount, ForceMode2D.Impulse);
     }
