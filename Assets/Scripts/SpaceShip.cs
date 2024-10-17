@@ -16,6 +16,13 @@ public class SpaceShip : MonoBehaviour
     [Header("Tools")]
     [SerializeField] ProjectileLauncher projectileLauncher;
 
+    //Cargo
+    [Header("Cargo")]
+    [SerializeField] int currentCargo = 0;
+    [SerializeField] int maxCargo = 100;
+
+    [Header("Mining")]
+    [SerializeField] GameObject minerPrefab;
     //trackers
     bool dead = false;
 
@@ -86,4 +93,34 @@ public class SpaceShip : MonoBehaviour
     public bool IsDead(){
         return dead;
     }
+
+    public void AddToCargo(int amount){
+        if(currentCargo <= maxCargo - amount){
+            currentCargo += amount;
+        }
+
+        if(currentCargo > maxCargo){
+            currentCargo = maxCargo;
+        }
+    }
+
+    public bool CargoFull(){
+        return currentCargo >= maxCargo;
+    }
+
+    public int EmptyCargo(){
+        int tempCargo = currentCargo;
+        currentCargo = 0;
+        return tempCargo;
+    }
+
+    public void TransferCargo(SpaceShip deliveryBoi){
+        AddToCargo(deliveryBoi.EmptyCargo());
+    }
+
+    public void DeployMiner(){
+        GameObject newMiner = Instantiate(minerPrefab,transform.position,Quaternion.identity);
+        newMiner.GetComponent<MinerAI>().SetMotherShip(this);
+    }
+
 }

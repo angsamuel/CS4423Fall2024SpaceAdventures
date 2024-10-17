@@ -18,8 +18,13 @@ public class SolarSystemManager : MonoBehaviour
     [SerializeField] ScreenFader hyperJumpScreenFader;
     bool colonizedEntireSystem = false;
 
+    [Header("Asteroids")]
+    [SerializeField] List<Asteroid> asteroids;
+
     void Awake(){
-        if(singleton == null){
+        planets= new List<Planet>();
+        asteroids = new List<Asteroid>();
+        if (singleton == null){
             singleton = this;
         }else{
             Debug.LogError("Multiple Solar System Managers in da scene >:|");
@@ -29,6 +34,17 @@ public class SolarSystemManager : MonoBehaviour
 
     public void RegisterPlanet(Planet p){
         planets.Add(p);
+    }
+
+    public void RegisterAsteroid(Asteroid a){
+        asteroids.Add(a);
+    }
+    public void RemoveAsteroid(Asteroid a){
+        asteroids.Remove(a);
+    }
+
+    public List<Asteroid> GetASteroids(){
+        return asteroids;
     }
 
     public void ReportPlanetColonization(){

@@ -35,6 +35,10 @@ public class PlayerInputHandler : MonoBehaviour
             SolarSystemManager.singleton.JumpAwayFromSystem();
         }
 
+        if(Input.GetKeyDown(KeyCode.M)){
+            playerShip.DeployMiner();
+        }
+
         playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
     }

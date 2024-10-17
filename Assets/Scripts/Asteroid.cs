@@ -18,8 +18,9 @@ public class Asteroid : MonoBehaviour
     void Start()
     {
         Resize();
-        RandomizeVelocity();
+        //RandomizeVelocity();
         RandomizeColor();
+        SolarSystemManager.singleton.RegisterAsteroid(this);
     }
 
     void FixedUpdate(){
@@ -67,13 +68,19 @@ public class Asteroid : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Projectile")){
-            Debug.Log("Break apart!");
-            Destroy(other.gameObject);
-            BreakApart();
-        }else if(other.CompareTag("Ship")){
-            other.GetComponent<SpaceShip>().Damage();
-        }
+        // if(other.CompareTag("Projectile")){
+        //     Debug.Log("Break apart!");
+        //     Destroy(other.gameObject);
+        //     BreakApart();
+        // }
+        // }else if(other.CompareTag("Ship")){
+        //     other.GetComponent<SpaceShip>().Damage();
+        // }
 
+    }
+
+    void OnDestroy()
+    {
+        SolarSystemManager.singleton.RemoveAsteroid(this);
     }
 }
