@@ -34,24 +34,57 @@ public class ShipAI : MonoBehaviour
     }
 
     bool CanSeeTarget(){
+        if(targetShip == null){
+            return false;
+        }
+
         return Vector3.Distance(myShip.transform.position, targetShip.transform.position) < sightDistance;
     }
 
+    void FindTarget(){
+        
+        List<SpaceShip> potentialTargets = SolarSystemManager.singleton.GetSpaceShips();
+        foreach(SpaceShip s in potentialTargets){
+            if(s.GetTeam() == myShip.GetTeam()){
+                continue;
+            }
+            
+            if(s.IsDead()){
+                continue;
+            }
+
+            if(targetShip == null){
+                targetShip = s;
+            }
+
+            if(Vector3.Distance(targetShip.transform.position, myShip.transform.position) > Vector3.Distance(s.transform.position, myShip.transform.position)){
+                targetShip = s;
+            }
+
+        }
+    }
 
     void IdleState(){
         if (stateTime == 0)
         {
             currentStateString = "IdleState";
         }
+        FindTarget();
         if (CanSeeTarget())
         {
             ChangeState(AttackState);
             return;
         }
+       
     }
 
     void AttackState(){
-        myShip.MoveToward(targetShip.transform.position);
+        if(Vector3.Distance(transform.position,targetShip.transform.position) > 3){
+            myShip.MoveToward(targetShip.transform.position);
+        }else{
+            myShip.Stop();
+        }
+        
         myShip.AimShip(targetShip.transform);
         if (stateTime == 0)
         {
@@ -66,6 +99,14 @@ public class ShipAI : MonoBehaviour
             myShip.GetProjectileLauncher().Reload();
         }
 
+        if(targetShip.IsDead()){
+            targetShip = null;
+            Debug.Log("TARGET DEAD");
+            ChangeState(PatrolState);
+            return;
+        }else{
+            Debug.Log(targetShip.gameObject.name);
+        }
 
         if(!CanSeeTarget())
         {
@@ -106,6 +147,7 @@ public class ShipAI : MonoBehaviour
     Vector3 patrolPivot; //where we started Patrolling
     void PatrolState(){
         if(stateTime == 0){
+            targetShip = null;
             currentStateString = "PatrolState";
             patrolPivot = myShip.transform.position;
             patrolPos = myShip.transform.position + new Vector3(Random.Range(-sightDistance, sightDistance),Random.Range(-sightDistance, sightDistance));
@@ -113,6 +155,7 @@ public class ShipAI : MonoBehaviour
 
         myShip.MoveToward(patrolPos);
         myShip.AimShip(patrolPos);
+        FindTarget();
 
         if (CanSeeTarget())
         {

@@ -82,6 +82,7 @@ public class MinerAI : MonoBehaviour
         myShip.AimShip(targetAsteroid.transform.position);
 
         if(targetAsteroid == null || Vector3.Distance(myShip.transform.position,targetAsteroid.transform.position) < 1){
+            myShip.Stop();
             return BTNode.BTOutcome.SWITCH; //all done
         }
 

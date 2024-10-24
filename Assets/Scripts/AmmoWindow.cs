@@ -31,7 +31,7 @@ public class AmmoWindow : MonoBehaviour
         int ammoAmount = playerInputHandler.GetPlayerShip().GetProjectileLauncher().GetAmmo();
         int maxAmmo = playerInputHandler.GetPlayerShip().GetProjectileLauncher().GetMaxAmmo();
         float fraction = ((float)ammoAmount / (float)maxAmmo);
-        ammoText.text = ammoAmount.ToString();
+        ammoText.text = "AMMO      " + ammoAmount.ToString();
         ammoText.color = Color.Lerp(Color.yellow,Color.white,fraction);
         if(ammoAmount == 0){
             ammoText.color = Color.red;
