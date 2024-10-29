@@ -34,7 +34,7 @@ public class SpaceShip : MonoBehaviour
     //trackers
 
     Vector3 movement = Vector3.zero;
-   
+
 
 
 
@@ -91,9 +91,6 @@ public class SpaceShip : MonoBehaviour
 
 
 
-    public void Stop(){
-        rb.velocity = Vector3.zero;
-    }
 
     public void MoveToward(Vector3 goalPos){
         goalPos.z = 0;
