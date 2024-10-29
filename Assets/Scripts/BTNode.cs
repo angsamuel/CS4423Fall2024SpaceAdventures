@@ -9,7 +9,6 @@ public class BTNode
         CONTINUE,
         SWITCH
     }
-    BTOutcome outcome;
     public delegate BTOutcome BTState(); //returns false when we need to change states
     public BTState btState;
     public delegate bool ApproveNode();
@@ -21,7 +20,7 @@ public class BTNode
     public BTNode(){
         parent = null;
         children = new List<BTNode>();
-        approvals= new List<ApproveNode>();
+        approvals = new List<ApproveNode>();
     }
 
     public void AddChild(BTNode childNode, ApproveNode approveNode)

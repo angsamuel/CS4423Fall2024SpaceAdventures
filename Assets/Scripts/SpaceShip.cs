@@ -67,6 +67,10 @@ public class SpaceShip : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
+    public void Stop(){
+        rb.velocity = Vector3.zero;
+    }
+
     public void MoveToward(Vector3 goalPos){
         goalPos.z = 0;
         Vector3 direction = goalPos - transform.position;
@@ -95,11 +99,9 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void AddToCargo(int amount){
-        if(currentCargo <= maxCargo - amount){
-            currentCargo += amount;
-        }
+        currentCargo += amount;
 
-        if(currentCargo > maxCargo){
+        if (currentCargo > maxCargo){
             currentCargo = maxCargo;
         }
     }

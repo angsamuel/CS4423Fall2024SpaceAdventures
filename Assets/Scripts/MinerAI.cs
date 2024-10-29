@@ -78,12 +78,15 @@ public class MinerAI : MonoBehaviour
     }
 
     public BTNode.BTOutcome GoToAsteroid(){
+        if (targetAsteroid == null || Vector3.Distance(myShip.transform.position, targetAsteroid.transform.position) < 1)
+        {
+            myShip.Stop();
+            return BTNode.BTOutcome.SWITCH; //all done
+        }
+
         myShip.MoveToward(targetAsteroid.transform.position);
         myShip.AimShip(targetAsteroid.transform.position);
 
-        if(targetAsteroid == null || Vector3.Distance(myShip.transform.position,targetAsteroid.transform.position) < 1){
-            return BTNode.BTOutcome.SWITCH; //all done
-        }
 
         return BTNode.BTOutcome.CONTINUE;
     }
@@ -130,10 +133,5 @@ public class MinerAI : MonoBehaviour
 
         return BTNode.BTOutcome.CONTINUE;
     }
-
-
-
-
-
 
 }
