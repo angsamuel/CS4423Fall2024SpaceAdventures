@@ -6,6 +6,14 @@ public class SpaceShip : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    Health health;
+
+    public enum Team{player, pirate}
+
+    [Header("Social")]
+    [SerializeField] Team team;
+
+
     [Header("Movement")]
     [SerializeField] float speed = 5;
     [SerializeField] float speedLimit = 10;
@@ -24,31 +32,32 @@ public class SpaceShip : MonoBehaviour
     [Header("Mining")]
     [SerializeField] GameObject minerPrefab;
     //trackers
-    bool dead = false;
+
+    Vector3 movement = Vector3.zero;
+   
 
 
 
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
+        projectileLauncher.Equip(this);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //transform.localEulerAngles = new Vector3(0,0,45);
+    void Start(){
+        SolarSystemManager.singleton.RegisterSpaceShip(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public void AimShip(Transform targetTransform){
        //transform.rotation =  Quaternion.LookRotation(Vector3.forward, targetTransform.position - transform.position);
         AimShip(targetTransform.position);
     }
     public void AimShip(Vector3 aimPos){
+        if(health.IsDead()){
+            return;
+        }
         Quaternion goalRotation = Quaternion.LookRotation(Vector3.forward, aimPos - transform.position);
         Quaternion currentRotation = transform.rotation;
 
@@ -57,15 +66,30 @@ public class SpaceShip : MonoBehaviour
     }
 
     void FixedUpdate(){
+        if(health.IsDead()){
+            Die();
+            return;
+        }
+
+        rb.AddForce(movement * speed);
         if (rb.velocity.magnitude > speedLimit){
             rb.velocity = rb.velocity.normalized * speedLimit;
         }
     }
 
-    public void Move(Vector3 movement)
+    public void Move(Vector3 newMovement)
     {
-        rb.AddForce(movement * speed);
+       movement = newMovement;
     }
+    public void Stop(){
+        movement = Vector3.zero;
+    }
+
+    void Die(){
+        GetComponent<SpriteRenderer>().color = Color.black;
+    }
+
+
 
     public void Stop(){
         rb.velocity = Vector3.zero;
@@ -82,7 +106,9 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void LaunchWithShip(){
-
+        if(health.IsDead()){
+            return;
+        }
         Recoil(-transform.up * projectileLauncher.Launch());
     }
 
@@ -90,12 +116,10 @@ public class SpaceShip : MonoBehaviour
         return projectileLauncher;
     }
 
-    public void Damage(){
-        dead = true;
-    }
+
 
     public bool IsDead(){
-        return dead;
+        return health.IsDead();
     }
 
     public void AddToCargo(int amount){
@@ -121,8 +145,40 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void DeployMiner(){
+        if(currentCargo < 1){
+            return;
+        }
+        currentCargo -= 1;
         GameObject newMiner = Instantiate(minerPrefab,transform.position,Quaternion.identity);
         newMiner.GetComponent<MinerAI>().SetMotherShip(this);
+    }
+
+    public Health GetHealth(){
+        return health;
+    }
+
+    public void SetProjectileLauncher(ProjectileLauncher pl){
+        projectileLauncher = pl;
+    }
+
+    public void SetTeam(Team newTeam){
+        team = newTeam;
+    }
+
+    public Team GetTeam(){
+        return team;
+    }
+
+    public int GetCargo(){
+        return currentCargo;
+    }
+
+    public bool TakeCargo(int amount){
+        if(currentCargo <amount){
+            return false;
+        }
+        currentCargo -= amount;
+        return true;
     }
 
 }

@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKey(KeyCode.Space)){
             playerShip.LaunchWithShip();
         }
 

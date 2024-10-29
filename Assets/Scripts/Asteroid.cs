@@ -17,9 +17,9 @@ public class Asteroid : MonoBehaviour
 
     void Start()
     {
-        Resize();
+        //Resize();
         //RandomizeVelocity();
-        RandomizeColor();
+        //RandomizeColor();
         SolarSystemManager.singleton.RegisterAsteroid(this);
     }
 

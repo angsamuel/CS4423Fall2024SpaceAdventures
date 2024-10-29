@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 755274903406373448, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 755274903406373448, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
+      propertyPath: currentHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1345567540489754470, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
       propertyPath: m_Name
       value: MinerSpaceShip Variant
@@ -23,6 +31,14 @@ PrefabInstance:
     - target: {fileID: 2721489908281856090, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
       propertyPath: speedLimit
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721489908281856090, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
+      propertyPath: minerPrefab
+      value: 
+      objectReference: {fileID: 2962277025264144562}
+    - target: {fileID: 2721489908281856090, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
+      propertyPath: currentCargo
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3807916792062262424, guid: 523580a20f126964b9fe7c95033866a1, type: 3}
       propertyPath: m_LocalScale.x

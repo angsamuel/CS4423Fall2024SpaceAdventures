@@ -46,14 +46,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Debris
+    uniqueID: 1590410307
+    locked: 0
   - name: Planets
     uniqueID: 1043216693
     locked: 0
   - name: PlanetEffects
     uniqueID: 843077047
-    locked: 0
-  - name: Debris
-    uniqueID: 1590410307
     locked: 0
   - name: Ships
     uniqueID: 2747252639

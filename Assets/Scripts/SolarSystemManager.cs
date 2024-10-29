@@ -21,9 +21,13 @@ public class SolarSystemManager : MonoBehaviour
     [Header("Asteroids")]
     [SerializeField] List<Asteroid> asteroids;
 
+    [Header("Ships")]
+    [SerializeField] List<SpaceShip> spaceShips;
+
     void Awake(){
         planets= new List<Planet>();
         asteroids = new List<Asteroid>();
+        spaceShips = new List<SpaceShip>();
         if (singleton == null){
             singleton = this;
         }else{
@@ -39,12 +43,21 @@ public class SolarSystemManager : MonoBehaviour
     public void RegisterAsteroid(Asteroid a){
         asteroids.Add(a);
     }
+
+    public void RegisterSpaceShip(SpaceShip s){
+        spaceShips.Add(s);
+    }
+
     public void RemoveAsteroid(Asteroid a){
         asteroids.Remove(a);
     }
 
     public List<Asteroid> GetASteroids(){
         return asteroids;
+    }
+
+    public List<SpaceShip> GetSpaceShips(){
+        return spaceShips;
     }
 
     public void ReportPlanetColonization(){
