@@ -2,47 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//responsible for basic movement, health and damage, basic information storing
 public class Creature : MonoBehaviour
 {
+    Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
+    public float speed = 2.5f;
 
-    [Header("Health")]
-    [SerializeField] int currentHealthPoints = 3;
-    [SerializeField] int maxHealthPoints = 3;
-    [Header("Movement")]
-    [SerializeField] float speed = 10.0f;
-    [Header("Naming")]
-    [SerializeField] string creatureName = "Sheepis";
 
-    [Header("Vanity")]
-    [SerializeField] Color baseColor = Color.white;
-    [Header("Tracked Information")]
-    [SerializeField] bool isDead = false;
 
-    SpriteRenderer sr;
-
-    void Awake() //goes before start
-    {
-        sr = GetComponent<SpriteRenderer>();
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("Creature Start! " + creatureName);
-        sr.color = baseColor;
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void Move(Vector3 offset)
+    {
+        if (offset != Vector3.zero)
+        {
+            offset.Normalize();
+            Vector3 vel = offset *= speed;
+
+            rb.velocity = vel;
+
+            if (offset.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+        else
+        {
+            Stop();
+        }
+    }
+
+    public void Stop()
     {
 
+        rb.velocity = Vector3.zero;
 
     }
 
-    public void Move(Vector3 movement){
-        transform.localPosition += movement * speed * Time.deltaTime;
+    public void MoveToward(Vector3 position)
+    {
+        Move(position - transform.position);
     }
+
+
 }
