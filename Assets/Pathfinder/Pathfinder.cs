@@ -201,7 +201,4 @@ public class Pathfinder : MonoBehaviour
         //don't forget to add final goal position!
         aStarPath.Add(goal.transform.position);
     }
-
-
-
 }
