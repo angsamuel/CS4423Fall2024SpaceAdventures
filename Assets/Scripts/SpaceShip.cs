@@ -10,10 +10,12 @@ public class SpaceShip : MonoBehaviour
 
     public enum Team{player, pirate}
 
+    [Header("Visuals")]
+    [SerializeField] Transform body;
+
+
     [Header("Social")]
     [SerializeField] Team team;
-
-
     [Header("Movement")]
     [SerializeField] float speed = 5;
     [SerializeField] float speedLimit = 10;
@@ -51,7 +53,7 @@ public class SpaceShip : MonoBehaviour
 
 
     public void AimShip(Transform targetTransform){
-       //transform.rotation =  Quaternion.LookRotation(Vector3.forward, targetTransform.position - transform.position);
+       //body.transform.rotation =  Quaternion.LookRotation(Vector3.forward, targetTransform.position - transform.position);
         AimShip(targetTransform.position);
     }
     public void AimShip(Vector3 aimPos){
@@ -59,15 +61,14 @@ public class SpaceShip : MonoBehaviour
             return;
         }
         Quaternion goalRotation = Quaternion.LookRotation(Vector3.forward, aimPos - transform.position);
-        Quaternion currentRotation = transform.rotation;
+        Quaternion currentRotation = body.transform.rotation;
 
-        transform.rotation = Quaternion.Lerp(currentRotation,goalRotation,Time.deltaTime * rotationSpeed);
-        //transform.rotation = Quaternion.Slerp(currentRotation, goalRotation, Time.deltaTime * rotationSpeed);
+        body.transform.rotation = Quaternion.Lerp(currentRotation,goalRotation,Time.deltaTime * rotationSpeed);
+        //body.transform.rotation = Quaternion.Slerp(currentRotation, goalRotation, Time.deltaTime * rotationSpeed);
     }
 
     void FixedUpdate(){
         if(health.IsDead()){
-            Die();
             return;
         }
 
@@ -85,9 +86,9 @@ public class SpaceShip : MonoBehaviour
         movement = Vector3.zero;
     }
 
-    void Die(){
-        GetComponent<SpriteRenderer>().color = Color.black;
-    }
+    // void Die(){
+    //     GetComponent<SpriteRenderer>().color = Color.black;
+    // }
 
 
 
