@@ -8,7 +8,9 @@ public class OrbitPlanet : MonoBehaviour
     [SerializeField] Transform planetProper;
     [SerializeField] Transform following;
     [SerializeField] float orbitSpeed = 10;
-    
+
+    [SerializeField] SpriteRenderer spriteRenderer;
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -37,9 +39,16 @@ public class OrbitPlanet : MonoBehaviour
         transform.localEulerAngles = new Vector3(0,0,Random.Range(0f,360f));
     }
 
-    public void RandomizeColor(){
-        SpriteRenderer sr = planetProper.GetComponent<SpriteRenderer>();
-        sr.color = Color.HSVToRGB(Random.Range(0f,1f),.5f,.5f);
+    public void RandomizeLook(){
+        //SpriteRenderer sr = planetProper.GetComponent<SpriteRenderer>();
+        //sr.color = Color.HSVToRGB(Random.Range(0f,1f),.5f,.5f);
+        spriteRenderer.material.SetColor("_BaseColor", new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
+        spriteRenderer.material.SetColor("_AtmosphereColor", new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
+        spriteRenderer.material.SetFloat("_TerrainScale1", Random.Range(1f, 6f));
+        spriteRenderer.material.SetFloat("_TerrainScale2", Random.Range(1f, 6f));
+        spriteRenderer.material.SetFloat("_CloudScale1", Random.Range(1f, 6f));
+        spriteRenderer.material.SetFloat("_CloudScale2", Random.Range(1f, 6f));
+        spriteRenderer.material.SetFloat("_CloudScale222222", Random.Range(1f, 6f));
     }
 
     public Transform GetPlanetProper(){

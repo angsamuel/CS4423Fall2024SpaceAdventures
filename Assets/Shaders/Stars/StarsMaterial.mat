@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: e0da34907a1d44c43800033f288b08df, type: 3}
+  m_Name: StarsMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 52df78b8505bc45488f1b7c8f8145706, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,17 +37,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CellDensity: 2
-    - _DistortionStrength: 2.16
-    - _PerlinScale: 4.45
-    - _TimeScale: 5
-    m_Colors:
-    - _BaseColor: {r: 0.36320746, g: 0.7777233, b: 1, a: 0}
-    - _PerlinSpeed: {r: 1, g: 1, b: 0, a: 0}
-    - _WaterFoamColor: {r: 1, g: 1, b: 1, a: 0}
-    - _WaterSpeed: {r: 1, g: -1, b: 0, a: 0}
+    - _Power: 27.9
+    - _Scale1: 5
+    - _Scale2: 10
+    - _TimeScale: 0.01
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &6835402407737361337
+--- !u!114 &6628979596276945299
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

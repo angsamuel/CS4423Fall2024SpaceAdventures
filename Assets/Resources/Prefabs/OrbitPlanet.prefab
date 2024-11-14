@@ -48,6 +48,7 @@ MonoBehaviour:
   planetProper: {fileID: 9115892255554764961}
   following: {fileID: 0}
   orbitSpeed: 10
+  spriteRenderer: {fileID: 6443882622778887917}
 --- !u!1001 &2667879564638896291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +106,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e302efd064bce49abd0f549653f92f, type: 3}
+--- !u!212 &6443882622778887917 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8965386264352067150, guid: 53e302efd064bce49abd0f549653f92f, type: 3}
+  m_PrefabInstance: {fileID: 2667879564638896291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9115892255554764961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6594415414300688386, guid: 53e302efd064bce49abd0f549653f92f, type: 3}

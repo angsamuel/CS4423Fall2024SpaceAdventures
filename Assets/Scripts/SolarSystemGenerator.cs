@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SolarSystemGenerator : MonoBehaviour
 {
-    
+
     [SerializeField] GameObject sunPrefab;
     [SerializeField] GameObject orbitPlanetPrefab;
     [SerializeField] GameObject asteroidPrefab;
@@ -34,21 +34,21 @@ public class SolarSystemGenerator : MonoBehaviour
         //Planets
         int numPlanets = Random.Range(1,9);
         float planetDistanceTracker = Random.Range(6f,12f);
-        
+
         int orbitDirection = Random.Range(1,3);
         if(orbitDirection == 2){
             orbitDirection = -1;
         }
 
-        for(int i = 0; i<numPlanets; i++){        
+        for(int i = 0; i<numPlanets; i++){
             OrbitPlanet newPlanet = Instantiate(orbitPlanetPrefab,newSun.transform.position,Quaternion.identity).GetComponent<OrbitPlanet>();
             newPlanet.SetFollow(newSun.transform);
             newPlanet.SetOrbitDistance(planetDistanceTracker);
             planetDistanceTracker += Random.Range(3f,6f);
-            newPlanet.SetScale(Random.Range(1f,2.5f));
+            newPlanet.SetScale(Random.Range(1f,4f));
             newPlanet.SetOrbitSpeed(Random.Range(10f,15f) * orbitDirection);
             newPlanet.SetRandomRotation();
-            newPlanet.RandomizeColor();
+            newPlanet.RandomizeLook();
 
             if(Random.Range(0,2) == 0){ //50% chance
                 OrbitPlanet newMoon = Instantiate(orbitPlanetPrefab,newPlanet.transform.position,Quaternion.identity).GetComponent<OrbitPlanet>();
@@ -57,7 +57,7 @@ public class SolarSystemGenerator : MonoBehaviour
                 newMoon.SetScale(Random.Range(.5f,.75f));
                 newMoon.SetOrbitSpeed(Random.Range(30f,60f));
                 newMoon.SetRandomRotation();
-                newMoon.RandomizeColor();
+                newMoon.RandomizeLook();
             }
         }
 

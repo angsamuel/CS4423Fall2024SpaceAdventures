@@ -23,8 +23,8 @@ public class Planet : MonoBehaviour
 
 
     void Awake(){
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = defaultColor;
+        //spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer.color = defaultColor;
 
     }
 
