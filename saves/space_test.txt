@@ -1,1 +1,1 @@
-player level;5
+player level=6

@@ -1,0 +1,7 @@
+player level=6
+Meepis_BaseColor=0.696607,0.654024,0.901582,1.000000
+Meepis_AtmosphereColor=0.042819,0.234254,0.783386,1.000000
+Meepis_TerrainScale1=4.857213
+Meepis_TerrainScale2=2.868717
+Meepis_CloudScale1=1.802572
+Meepis_CloudScale2=3.749326

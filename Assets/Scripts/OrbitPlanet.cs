@@ -8,15 +8,15 @@ public class OrbitPlanet : MonoBehaviour
     [SerializeField] Transform planetProper;
     [SerializeField] Transform following;
     [SerializeField] float orbitSpeed = 10;
-
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] string PlanetName = "Meepis";
 
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         transform.position = following.position;
-        transform.Rotate(new Vector3(0,0,orbitSpeed*Time.deltaTime));
+        transform.Rotate(new Vector3(0,0,orbitSpeed*Time.fixedDeltaTime));
     }
 
     public void SetFollow(Transform newFollow){
@@ -48,7 +48,28 @@ public class OrbitPlanet : MonoBehaviour
         spriteRenderer.material.SetFloat("_TerrainScale2", Random.Range(1f, 6f));
         spriteRenderer.material.SetFloat("_CloudScale1", Random.Range(1f, 6f));
         spriteRenderer.material.SetFloat("_CloudScale2", Random.Range(1f, 6f));
-        spriteRenderer.material.SetFloat("_CloudScale222222", Random.Range(1f, 6f));
+    }
+
+    public void SavePlanet(){
+        NDSaveLoad.SetFileName(PlanetName + ".txt");
+        NDSaveLoad.SaveColor(PlanetName + "_BaseColor", spriteRenderer.material.GetColor("_BaseColor"));
+        NDSaveLoad.SaveColor(PlanetName + "_AtmosphereColor", spriteRenderer.material.GetColor("_AtmosphereColor"));
+        NDSaveLoad.SaveFloat(PlanetName + "_TerrainScale1", spriteRenderer.material.GetFloat("_TerrainScale1"));
+        NDSaveLoad.SaveFloat(PlanetName + "_TerrainScale2", spriteRenderer.material.GetFloat("_TerrainScale2"));
+        NDSaveLoad.SaveFloat(PlanetName + "_CloudScale1", spriteRenderer.material.GetFloat("_CloudScale1"));
+        NDSaveLoad.SaveFloat(PlanetName + "_CloudScale2", spriteRenderer.material.GetFloat("_CloudScale2"));
+        NDSaveLoad.Flush();
+    }
+
+    public void LoadPlanet()
+    {
+        NDSaveLoad.SetFileName(PlanetName + ".txt");
+        spriteRenderer.material.SetColor("_BaseColor",  NDSaveLoad.LoadColor(PlanetName + "_BaseColor"));
+        spriteRenderer.material.SetColor("_AtmosphereColor", NDSaveLoad.LoadColor(PlanetName + "_AtmosphereColor"));
+        spriteRenderer.material.SetFloat("_TerrainScale1", NDSaveLoad.LoadFloat(PlanetName + "_TerrainScale1"));
+        spriteRenderer.material.SetFloat("_TerrainScale2", NDSaveLoad.LoadFloat(PlanetName + "_TerrainScale2"));
+        spriteRenderer.material.SetFloat("_CloudScale1", NDSaveLoad.LoadFloat(PlanetName + "_CloudScale1"));
+        spriteRenderer.material.SetFloat("_CloudScale2", NDSaveLoad.LoadFloat(PlanetName + "_CloudScale2"));
     }
 
     public Transform GetPlanetProper(){

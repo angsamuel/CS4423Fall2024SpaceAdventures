@@ -8,26 +8,28 @@ public static class NDSaveLoad
     public static string fileName = "default.txt";
     private static string saveFolder = "saves";
     private static char saveToken = '='; //this divides keys from values in the file, not allowed to use
-    private static string cachedDirectoryPath = null;
+    private static string directoryPath = null;
     private static Dictionary<string, string> dataDict;
 
     static NDSaveLoad(){ //static constructor, called automatically :3
         dataDict = new Dictionary<string, string>();
-        cachedDirectoryPath = Directory.GetParent(Application.dataPath).FullName;
-        cachedDirectoryPath = Path.Combine(cachedDirectoryPath, saveFolder);
-        if (!Directory.Exists(cachedDirectoryPath))
+        directoryPath = Directory.GetParent(Application.dataPath).FullName;
+        directoryPath = Path.Combine(directoryPath, saveFolder);
+        if (!Directory.Exists(directoryPath))
         {
-            Directory.CreateDirectory(cachedDirectoryPath);
+            Directory.CreateDirectory(directoryPath);
         }
-        Debug.Log($"Save Load file set to {cachedDirectoryPath}");
+        Debug.Log($"Save Load file set to {directoryPath}");
     }
 
     public static void SetFileName(string newFileName){
         fileName = newFileName;
     }
 
+
+
     public static void LoadFromFile(){
-        string filePath = Path.Combine(cachedDirectoryPath, fileName);
+        string filePath = Path.Combine(directoryPath, fileName);
         dataDict.Clear();
 
         try
@@ -53,7 +55,7 @@ public static class NDSaveLoad
     }
 
     public static void SaveToFile(){
-        string filePath = Path.Combine(cachedDirectoryPath, fileName);
+        string filePath = Path.Combine(directoryPath, fileName);
 
         try
         {
@@ -157,4 +159,5 @@ public static class NDSaveLoad
         }
         return defaultValue;
     }
+
 }

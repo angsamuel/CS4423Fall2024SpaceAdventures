@@ -23,13 +23,17 @@ public class Planet : MonoBehaviour
 
 
     void Awake(){
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        //spriteRenderer.color = defaultColor;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = defaultColor;
 
     }
 
+
     void Start(){
-        SolarSystemManager.singleton.RegisterPlanet(this);
+        if(SolarSystemManager.singleton != null){
+            SolarSystemManager.singleton.RegisterPlanet(this);
+        }
+
     }
 
     public void SetColonizeProgress(float t){ //t should be from 0 to 1
@@ -82,5 +86,6 @@ public class Planet : MonoBehaviour
             }
         }
     }
+
 
 }

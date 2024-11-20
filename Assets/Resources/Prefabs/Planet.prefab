@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49aa5443466599c44abf6fab63004aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0.23137257, g: 0.38823533, b: 0.5372549, a: 1}
-  visitColor: {r: 0.4306569, g: 0.7226276, b: 1, a: 1}
-  colonizedColor: {r: 0, g: 1, b: 0.43586516, a: 0.78431374}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  visitColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  colonizedColor: {r: 0, g: 1, b: 0.43586516, a: 0.019607844}
   visitors: 0
   colonizeProgressTransform: {fileID: 4439043860639865571}
   colonizeProgressSpriteRenderer: {fileID: 1514246053250184417}
@@ -333,7 +333,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
