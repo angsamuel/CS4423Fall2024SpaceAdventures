@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
@@ -23,13 +24,14 @@ public class SpaceShip : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] float rotationSpeed = 10;
 
-    [Header("Tools")]
-    [SerializeField] ProjectileLauncher projectileLauncher;
+
 
     //Cargo
     [Header("Cargo")]
     [SerializeField] int currentCargo = 0;
     [SerializeField] int maxCargo = 100;
+    [SerializeField] List<ProjectileLauncher> launchers;
+    int currentLauncherIndex = 0;
 
     [Header("Mining")]
     [SerializeField] GameObject minerPrefab;
@@ -43,7 +45,7 @@ public class SpaceShip : MonoBehaviour
     void Awake(){
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
-        projectileLauncher.Equip(this);
+        launchers[currentLauncherIndex].Equip(this);
     }
 
     void Start(){
@@ -107,11 +109,11 @@ public class SpaceShip : MonoBehaviour
         if(health.IsDead()){
             return;
         }
-        Recoil(-transform.up * projectileLauncher.Launch());
+        Recoil(-transform.up * launchers[currentLauncherIndex].Launch());
     }
 
     public ProjectileLauncher GetProjectileLauncher(){
-        return projectileLauncher;
+        return launchers[currentLauncherIndex];
     }
 
 
@@ -156,7 +158,7 @@ public class SpaceShip : MonoBehaviour
     }
 
     public void SetProjectileLauncher(ProjectileLauncher pl){
-        projectileLauncher = pl;
+        launchers[currentLauncherIndex] = pl;
     }
 
     public void SetTeam(Team newTeam){
@@ -177,6 +179,18 @@ public class SpaceShip : MonoBehaviour
         }
         currentCargo -= amount;
         return true;
+    }
+
+    public void EquipNextInInventory(){
+
+        currentLauncherIndex += 1;
+        if(currentLauncherIndex > launchers.Count-1){
+            currentLauncherIndex = 0;
+        }
+        launchers[currentLauncherIndex].Equip(this);
+    }
+    public List<ProjectileLauncher> GetAllLaunchers(){
+        return launchers;
     }
 
 }

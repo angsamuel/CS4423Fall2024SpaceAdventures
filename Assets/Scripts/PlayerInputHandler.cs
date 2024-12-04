@@ -8,6 +8,7 @@ public class PlayerInputHandler : MonoBehaviour
     delegate bool AITick();
     [SerializeField] SpaceShip playerShip;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,17 @@ public class PlayerInputHandler : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.M)){
             playerShip.DeployMiner();
+        }
+
+        if(Input.GetKeyDown(KeyCode.F)){
+            TimeManager.singleton.SlowTime();
+        }
+        if(Input.GetKeyDown(KeyCode.G)){
+            TimeManager.singleton.ResumeTime();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q)){
+            playerShip.EquipNextInInventory();
         }
 
         playerShip.AimShip(Camera.main.ScreenToWorldPoint(Input.mousePosition));

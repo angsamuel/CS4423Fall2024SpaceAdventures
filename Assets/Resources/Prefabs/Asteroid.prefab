@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2292332267955893387}
   - component: {fileID: 790271238027505860}
   - component: {fileID: 2132956881559469743}
+  - component: {fileID: 5944299272130583339}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -163,3 +164,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 4
   asteroidPrefab: {fileID: 750382422999639477}
+--- !u!114 &5944299272130583339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750382422999639477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: cd8a9b7b0000000043bccb5e35392e3eb75540329fbfbfa3d54cbf4fb9c2173345bcc357
+  m_ShapePath:
+  - {x: -0.43828082, y: 0.25633526, z: 0}
+  - {x: -0.008544922, y: 0.5031253, z: 0}
+  - {x: 0.44453192, y: 0.25934792, z: 0}
+  - {x: 0.436718, y: -0.25153458, z: 0}
+  - {x: -0.0031251907, y: -0.5047443, z: 0}
+  - {x: -0.43754935, y: -0.25627887, z: 0}
+  m_ShapePathHash: 647832677
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 35658
+  m_LocalBounds:
+    m_Center: {x: 0.0031255484, y: -0.0008094907, z: 0}
+    m_Extent: {x: 0.44140637, y: 0.5039348, z: 0}

@@ -35,7 +35,7 @@ public class ProjectileLauncher : MonoBehaviour
     int minGenAmmo = 1;
     int maxGenAmmo = 12;
     float minGenReloadTime = 1;
-    float maxGenReloadTime = 10;
+    float maxGenReloadTime = 3;
     float minGenCooldownTime = .01f;
     float maxGenCooldownTime = 1f;
     float minGenRecoil = 0;
@@ -55,7 +55,7 @@ public class ProjectileLauncher : MonoBehaviour
         currentAmmo = maxAmmo;
         Generate(Random.Range(int.MinValue, int.MaxValue));
     }
-    
+
     public void Generate(int newSeed){
         seed = newSeed;
         Random.InitState(newSeed);
@@ -108,7 +108,7 @@ public class ProjectileLauncher : MonoBehaviour
         audioSource.pitch = Random.Range(1f-pitchRange,1f+pitchRange);
         audioSource.Play();
 
-       
+
         return GetRecoilAmount();
     }
 

@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalFromTexture_250fac87f8f947808e816ee5591107af_Texture_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 5f82752009717844db4ec591322aa475, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -66,5 +70,6 @@ Material:
     - _BaseColor: {r: 0.39150938, g: 0.7393556, b: 1, a: 0}
     - _CloudVelocity: {r: 1, g: 1, b: 0, a: 0}
     - _Terrain: {r: 0, g: 0.40566036, b: 0.17037275, a: 0}
+    - _TerrainColor: {r: 0, g: 0.40566036, b: 0.17037275, a: 0}
     - _TerrainVelocity: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -49,6 +49,7 @@ MonoBehaviour:
   following: {fileID: 0}
   orbitSpeed: 10
   spriteRenderer: {fileID: 6443882622778887917}
+  PlanetName: Meepis
 --- !u!1001 &2667879564638896291
 PrefabInstance:
   m_ObjectHideFlags: 0
